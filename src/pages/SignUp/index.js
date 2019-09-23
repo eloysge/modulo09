@@ -1,20 +1,26 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import Loader from 'react-loader-spinner';
+import { signUpRequest } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('O nome é obrigatório'),
   email: Yup.string('O e-mail não é válido').required('O e-mail é obrigatório'),
   password: Yup.string()
-    .min(4, 'Tamanho mínimo da senha é 4 digitos')
+    .min(6, 'Tamanho mínimo da senha é 6 digitos')
     .required('A senha é obrigatória'),
 });
 
 export default function SignUp() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleSubmit({ name, email, password }) {
+    dispatch(signUpRequest(name, email, password));
   }
 
   return (
@@ -24,7 +30,13 @@ export default function SignUp() {
         <Input name="name" type="text" placeholder="Nome completo" />
         <Input name="email" type="email" placeholder="Seu e-mail" />
         <Input name="password" type="password" placeholder="Sua senha" />
-        <button type="submit">Criar conta</button>
+        <button type="submit">
+          {loading ? (
+            <Loader type="Oval" color="#fff" height={30} width={30} />
+          ) : (
+            'Criar conta'
+          )}
+        </button>
         <Link to="/">Já tenho conta</Link>
       </Form>
     </>
