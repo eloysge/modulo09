@@ -30,3 +30,9 @@ export function signUpSuccess() {
     type: '@auth/SIGN_UP_SUCCESS',
   };
 }
+
+export function signOut() {
+  return {
+    type: '@auth/SIGN_OUT',
+  };
+}
