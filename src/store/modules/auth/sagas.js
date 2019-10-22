@@ -35,12 +35,20 @@ export function* signIn({ payload }) {
 export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
-    yield call(api.post, 'users', {
+    const response = yield call(api.post, 'users', {
       name,
       email,
       password,
       provider: true,
     });
+
+    const { error } = response.data;
+    if (error) {
+      toast.warning(error);
+      yield put(signFailure());
+      return;
+    }
+
     yield put(signUpSuccess());
     history.push('/');
     //

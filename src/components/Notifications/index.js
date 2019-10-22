@@ -7,7 +7,6 @@
  *
  * yarn add date-fns@next (manupulação de datas)
  */
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
