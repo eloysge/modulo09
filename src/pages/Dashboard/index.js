@@ -2,12 +2,12 @@
  * yarn add date-fns-tz (para trabalhar com TimeZone)
  */
 import React, { useState, useMemo, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { format, subDays, addDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import Loader from 'react-loader-spinner';
 import api from '~/services/api';
-
 import { Container, Time } from './styles';
 
 export default function Dashboard() {
@@ -29,6 +29,13 @@ export default function Dashboard() {
         const response = await api.get('schedules', {
           params: { date, timeZone: null },
         });
+
+        const { error } = response.data;
+        if (error) {
+          toast.error(error);
+          return;
+        }
+
         const data = response.data.map(item => {
           return {
             time: item.time,
