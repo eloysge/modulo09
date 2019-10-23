@@ -23,8 +23,7 @@ export default function Profile() {
     dispatch(updateProfileResquest(data));
   }
 
-  function handleSignOut() {
-    alert('Fazendo Logout...');
+  async function handleSignOut() {
     dispatch(signOut());
   }
 

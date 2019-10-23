@@ -77,7 +77,7 @@ export function* setToken({ payload }) {
 
 export function signOut() {
   window.location.reload();
-  history.push('/');
+  // history.push('/');
 }
 
 export default all([
