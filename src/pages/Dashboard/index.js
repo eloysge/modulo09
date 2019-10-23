@@ -30,12 +30,6 @@ export default function Dashboard() {
           params: { date, timeZone: null },
         });
 
-        const { error } = response.data;
-        if (error) {
-          toast.error(error);
-          return;
-        }
-
         const data = response.data.map(item => {
           return {
             time: item.time,
@@ -46,6 +40,7 @@ export default function Dashboard() {
         setSchedule(data);
         setLoading(false);
       } catch (err) {
+        toast.error('Falha ao obter [schedules]');
         setLoading(false);
         setSchedule([]);
       }
