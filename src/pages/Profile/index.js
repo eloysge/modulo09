@@ -19,12 +19,17 @@ export default function Profile() {
   const profile = useSelector(state => state.user.profile);
   const loading = useSelector(state => state.user.loading);
 
+  function handleReload() {
+    window.location.reload();
+  }
+
   function handleSubmit(data) {
     dispatch(updateProfileResquest(data));
   }
 
   async function handleSignOut() {
     dispatch(signOut());
+    handleReload();
   }
 
   return (
