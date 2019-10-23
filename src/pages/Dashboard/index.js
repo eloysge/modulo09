@@ -21,13 +21,13 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+    // const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
 
     async function loadSchedule() {
       setLoading(true);
       try {
         const response = await api.get('schedules', {
-          params: { date, timeZone },
+          params: { date, timeZone: null },
         });
         const data = response.data.map(item => {
           return {
