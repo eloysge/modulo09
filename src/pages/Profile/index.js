@@ -24,6 +24,7 @@ export default function Profile() {
   }
 
   function handleSignOut() {
+    window.location.reload();
     dispatch(signOut());
   }
 
