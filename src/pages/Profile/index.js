@@ -23,8 +23,7 @@ export default function Profile() {
     dispatch(updateProfileResquest(data));
   }
 
-  async function handleSignOut() {
-    await window.location.reload();
+  function handleSignOut() {
     dispatch(signOut());
   }
 

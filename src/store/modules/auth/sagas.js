@@ -75,7 +75,8 @@ export function* setToken({ payload }) {
   }
 }
 
-export function signOut() {
+export async function signOut() {
+  await window.location.reload();
   history.push('/');
 }
 
