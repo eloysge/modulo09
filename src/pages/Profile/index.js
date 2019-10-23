@@ -24,6 +24,7 @@ export default function Profile() {
   }
 
   function handleSignOut() {
+    alert('Fazendo Logout...');
     dispatch(signOut());
   }
 
