@@ -27,7 +27,7 @@ export default function Dashboard() {
       setLoading(true);
       try {
         const response = await api.get('schedules', {
-          params: { date, timeZone: null },
+          params: { date: format(date, 'yyyy-MM-dd'), timeZone: null },
         });
 
         const data = response.data.map(item => {
