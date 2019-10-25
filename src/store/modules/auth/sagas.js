@@ -15,7 +15,15 @@ export function* signIn({ payload }) {
       email,
       password,
     });
-    const { token, user } = response.data;
+
+    const { token, user, error } = response.data;
+
+    if (error) {
+      toast.error(error);
+      yield put(signFailure());
+      return;
+    }
+
     if (!user.provider) {
       toast.warning('Usuário não é um prestador de serviço.');
       yield put(signFailure());
@@ -27,7 +35,7 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     history.push('/dashboard');
   } catch (err) {
-    toast.error(`Falha na autenticação: ${err}`);
+    toast.error(`Falha na autenticação: ${err.message}`);
     yield put(signFailure());
   }
 }

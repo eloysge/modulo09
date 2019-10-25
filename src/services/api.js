@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://gobarber.homeip.net:3333',
+  baseURL: 'https://api.gobarber.carlo.com.br',
 });
 
 export default api;
