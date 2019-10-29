@@ -57,6 +57,13 @@ export default function Dashboard() {
     setDate(addDays(date, 1));
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDate(new Date());
+    }, 300000); // Recarregar a cada cinco minutos
+    return () => clearInterval(interval);
+  }, [date]);
+
   return (
     <Container>
       <header>
